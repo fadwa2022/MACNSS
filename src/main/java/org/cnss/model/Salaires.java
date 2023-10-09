@@ -4,19 +4,19 @@ import java.util.Date;
 
 public class Salaires {
     private int id;
-    private String matriculeEmployer;
+    private Employé employé;
     private int Salaire ;
-  private   Société societe;
+  private  Société societe;
   private int nombreJoursTravailles;
   private  int joursCotises;
-  private Date dateSalaire;
+  private java.sql.Date dateSalaire;
 
-    public Salaires(int id, String matriculeEmployer, int salaire, Société societe, int nombreJoursTravailles, int joursCotises, Date dateSalaire) {
+    public Salaires(int id, Employé employé, int salaire, Société societe, int joursCotises, java.sql.Date dateSalaire) {
         this.id = id;
-        this.matriculeEmployer = matriculeEmployer;
-        Salaire = salaire;
+        this.employé = employé;
+        this.Salaire = salaire;
         this.societe = societe;
-        this.nombreJoursTravailles = nombreJoursTravailles;
+        this.nombreJoursTravailles = 26;
         this.joursCotises = joursCotises;
         this.dateSalaire = dateSalaire;
     }
@@ -29,12 +29,12 @@ public class Salaires {
         this.id = id;
     }
 
-    public String getMatriculeEmployer() {
-        return matriculeEmployer;
+        public Employé getemployé() {
+        return employé;
     }
 
-    public void setMatriculeEmployer(String matriculeEmployer) {
-        this.matriculeEmployer = matriculeEmployer;
+    public void setemployé(Employé employé) {
+        this.employé = employé;
     }
 
     public int getSalaire() {
@@ -57,9 +57,6 @@ public class Salaires {
         return nombreJoursTravailles;
     }
 
-    public void setNombreJoursTravailles(int nombreJoursTravailles) {
-        this.nombreJoursTravailles = nombreJoursTravailles;
-    }
 
     public int getJoursCotises() {
         return joursCotises;
@@ -72,8 +69,8 @@ public class Salaires {
     public Date getDateSalaire() {
         return dateSalaire;
     }
-
-    public void setDateSalaire(Date dateSalaire) {
-        this.dateSalaire = dateSalaire;
+    public void setDateSalaire(java.sql.Date dateSalaire){
+        this.dateSalaire=dateSalaire;
     }
+
 }

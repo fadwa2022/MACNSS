@@ -1,11 +1,11 @@
 package org.cnss.Dao;
 
 import java.sql.*;
-import java.util.List;
-import java.util.ArrayList;
+
+import java.util.*;
+import java.util.Date;
 
 import org.cnss.DataBase.DatabaseConnection;
-import org.cnss.Ennum.Etat;
 import org.cnss.Ennum.StatutDeTravail;
 import org.cnss.model.Employé;
 import org.cnss.model.Société;
@@ -42,13 +42,14 @@ public class EmployéDAO {
 
                 int rowsAffected = preparedStatement.executeUpdate();
 
-                if (rowsAffected == 1) {
-                    generatedKeys = preparedStatement.getGeneratedKeys();
-                    if (generatedKeys.next()) {
-                        // Récupérez l'ID généré si nécessaire
-                        // employé.setId(generatedKeys.getInt(1));
+                if (rowsAffected > 0) {
+
                         employésAjoutés.add(employé);
-                    }
+
+                    java.sql.Date dateAjoutEmployer = new java.sql.Date(new java.util.Date().getTime());
+
+                        SalairesDAO.ajouterEmployerSalairesPremierfois(employé, dateAjoutEmployer);
+
                 }
             }
         } catch (SQLException e) {

@@ -1,22 +1,20 @@
 package org.cnss.UI;
 
-import org.cnss.Dao.EmployéDAO;
+import org.cnss.Dao.*;
 import org.cnss.Ennum.StatutDeTravail;
-import org.cnss.model.Employé;
-import org.cnss.model.Société;
+import org.cnss.model.*;
+
 import org.cnss.Stockage.SocieteManager;
 
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.text.*;
+import java.util.*;
+
 
 public class EmployerUI {
     static Scanner scanner = new Scanner(System.in);
     static EmployéDAO employéDAO =new EmployéDAO();
+    static SalairesDAO salairesDAO = new SalairesDAO();
     static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     static SocieteManager societeManager = SocieteManager.getInstance();
     static HashMap<Integer, Société> sociétésEnregistrées = societeManager.getSociétésEnregistrées();
@@ -29,6 +27,7 @@ public class EmployerUI {
         System.out.println("3. Déclarer les jours d'absence d'un employé");
         System.out.println("4. Afficher tous vos employés");
         System.out.println("5. Supprimer un employé");
+
         System.out.println("6. Quit (Log Out)");
         System.out.print("Enter your choice: ");
         Employerchoix = scanner.nextInt();
@@ -42,6 +41,7 @@ public class EmployerUI {
                 modifierSalaireEmployé();
                 break;
             case 3:
+                Déclarerjoursabsencedemployé();
             break;
             case 4:
                 afficherEmployésDeLaSociété();
@@ -185,6 +185,37 @@ public class EmployerUI {
         }
 
  }
+    public static void Déclarerjoursabsencedemployé()  {
+        System.out.print("Saisir Matricule : ");
+        String matricule = scanner.nextLine();
+        Employé employé = employéDAO.getEmployéByMatricule(matricule);
+        System.out.print("Le mois et l'année de déclaration (format YYYY-MM) : ");
+        String dateStr = scanner.nextLine();
+
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+        java.util.Date utilDate = null;
+
+        try {
+            utilDate = dateFormat.parse(dateStr);
+        } catch (ParseException e) {
+            System.out.println("Format de date incorrect. Utilisez le format YYYY-MM.");
+            return;
+        }
+
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
+        System.out.print("Saisir les jours d'absence de l'employé: ");
+        int joursAbsents = scanner.nextInt();
+        Salaires salairesMisAJour = salairesDAO.ajouterLesjoursCotises(employé,sqlDate, joursAbsents);
+
+        if (salairesMisAJour != null) {
+            System.out.println("Jours cotisés mis à jour avec succès !");
+        } else {
+            System.out.println("La mise à jour des jours cotisés a échoué.");
+        }
+    }
+
 
 
 }

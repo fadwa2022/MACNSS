@@ -1,8 +1,8 @@
 package org.cnss;
 import org.cnss.UI.*;
-import org.cnss.model.AgentCNSS;
 
 import java.security.GeneralSecurityException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -51,6 +51,8 @@ public  class  Main {
                 System.out.println("Invalid input. Please enter a number.");
                 scanner.nextLine();
             } catch (ParseException e) {
+                throw new RuntimeException(e);
+            } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }

@@ -3,7 +3,6 @@ import org.cnss.Dao.SociétéDAO;
 import org.cnss.model.Société;
 
 import java.text.ParseException;
-import java.util.HashMap;
 import org.cnss.Stockage.SocieteManager;
 
 import java.util.List;

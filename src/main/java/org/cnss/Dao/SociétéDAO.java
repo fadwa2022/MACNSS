@@ -60,7 +60,6 @@ public class SociétéDAO {
 
         return sociétéAuthentifiée;
     }
-
     public Société ajouterSociété(Société société) {
         PreparedStatement preparedStatement = null;
         ResultSet generatedKeys = null;

@@ -1,27 +1,27 @@
 package org.cnss.model;
 
 public class Retraités {
-    private String matricule;
-    private int salaireDeRetraite;
+    private Employé employé;
+    private float salaireDeRetraite;
 
-    public Retraités(String matricule, int salaireDeRetraite) {
-        this.matricule = matricule;
+    public Retraités(Employé employé, float salaireDeRetraite) {
+        this.employé = employé;
         this.salaireDeRetraite = salaireDeRetraite;
     }
 
-    public String getMatricule() {
-        return matricule;
+    public Employé getEmployé() {
+        return employé;
     }
 
-    public void setMatricule(String matricule) {
-        this.matricule = matricule;
+    public void setEmployé(Employé employé ) {
+        this.employé = employé;
     }
 
-    public int getSalaireDeRetraite() {
+    public float getSalaireDeRetraite() {
         return salaireDeRetraite;
     }
 
-    public void setSalaireDeRetraite(int salaireDeRetraite) {
+    public void setSalaireDeRetraite(float salaireDeRetraite) {
         this.salaireDeRetraite = salaireDeRetraite;
     }
 }
